@@ -69,17 +69,17 @@ try {
     $address = $data->address;
     $salary = $data->salary;
 
-    $sql = "UPDATE student SET name='$name', email='$email', address='$address', age='$age' WHERE id=$id";
+    $sql = "UPDATE student SET name='$name', email='$email', address='$address', salary='$salary' WHERE id=$id";
     $result = $db->conn->query($sql);
 
     if ($result) {
         http_response_code(200);
         $updated_data = [
-            "id" => $id,
+            
             "name" => $name,
             "email" => $email,
             "address" => $address,
-            "age" => $age
+            "salary" => $salary
         ];
         echo json_encode(
             [
