@@ -10,7 +10,7 @@ if ($method !== "DELETE") {
     http_response_code(405);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "method not allowed"
         ],
         JSON_PRETTY_PRINT
@@ -24,7 +24,7 @@ if ($id === "") {
     http_response_code(400);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "id required"
         ],
         JSON_PRETTY_PRINT
@@ -36,7 +36,7 @@ if (!is_numeric($id)) {
     http_response_code(400);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "id should be numeric value."
         ],
         JSON_PRETTY_PRINT
@@ -65,7 +65,7 @@ try {
             http_response_code(404);
             echo json_encode(
                 [
-                    "status" => true,
+                    "status" => false,
                     "message" => "ID not found"
                 ],
                 JSON_PRETTY_PRINT
@@ -76,7 +76,7 @@ try {
     http_response_code(500);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "Error: " . $e->getMessage()
         ],
         JSON_PRETTY_PRINT

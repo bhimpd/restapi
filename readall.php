@@ -10,7 +10,7 @@ if ($method !== "GET") {
     http_response_code(405);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "method not allowed"
         ]
     );
@@ -50,7 +50,7 @@ try {
     http_response_code(500);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "Error: " . $e->getMessage()
         ],
         JSON_PRETTY_PRINT

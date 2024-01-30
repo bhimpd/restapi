@@ -27,7 +27,7 @@ try {
         http_response_code(400);
         echo json_encode(
             [
-                "status" => true,
+                "status" => false,
                 "message" => "id required"
             ],
             JSON_PRETTY_PRINT
@@ -39,7 +39,7 @@ try {
         http_response_code(400);
         echo json_encode(
             [
-                "status" => true,
+                "status" => false,
                 "message" => "id should be numeric value."
             ],
             JSON_PRETTY_PRINT
@@ -53,14 +53,13 @@ try {
         http_response_code(404);
         echo json_encode(
             [
-                "status" => true,
+                "status" => false,
                 "message" => "ID not found"
             ],
             JSON_PRETTY_PRINT
         );
         exit;
     }
-
 
     $data = json_decode(file_get_contents("php://input"));
 
@@ -75,7 +74,6 @@ try {
     if ($result) {
         http_response_code(200);
         $updated_data = [
-
             "name" => $name,
             "email" => $email,
             "address" => $address,
@@ -94,7 +92,7 @@ try {
     http_response_code(500);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => "Error: " . $e->getMessage()
         ],
         JSON_PRETTY_PRINT

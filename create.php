@@ -9,7 +9,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method !== "POST") {
     http_response_code(405);
     echo json_encode([
-        "status" => true,
+        "status" => false,
         "message" => "method not allowed"
     ]);
     exit;
@@ -40,7 +40,12 @@ try {
     $result = $db->conn->query($sql);
     if ($result) {
         http_response_code(201);
-        $fetched_data = ["name" => $name, "email" => $email, "address" => $address, "salary" => $salary,];
+        $fetched_data = [
+            "name" => $name,
+            "email" => $email,
+            "address" => $address,
+            "salary" => $salary
+        ];
 
         echo json_encode(
             [
@@ -52,13 +57,19 @@ try {
         );
     } else {
         http_response_code(500);
-        echo json_encode(["message" => "Error: " . $sql . "<br>" . $db->conn->error], JSON_PRETTY_PRINT);
+        echo json_encode(
+            [
+                "status" => false,
+                "message" => "Error: " . $sql . "<br>" . $db->conn->error
+            ],
+            JSON_PRETTY_PRINT
+        );
     }
 } catch (\Throwable $err) {
     http_response_code(400);
     echo json_encode(
         [
-            "status" => true,
+            "status" => false,
             "message" => $err->getMessage()
         ],
         JSON_PRETTY_PRINT
