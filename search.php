@@ -26,15 +26,13 @@ if (isset($_GET['name'])) {
         }
 
         $sql = "SELECT * FROM employee WHERE name LIKE '%$search_value%'";
-        // Check if sort parameter is provided and valid
+
         if (isset($_GET['sort']) && ($_GET['sort'] === 'asc' || $_GET['sort'] === 'desc')) {
             $sort_order = strtoupper($_GET['sort']);
-            $sql .= " ORDER BY name $sort_order"; // Assuming you want to sort by name
+            $sql .= " ORDER BY name $sort_order";
         }
 
         $result = $db->conn->query($sql);
-
-
         $total_rows = $result->num_rows;
 
         if ($total_rows > 0) {
@@ -77,15 +75,13 @@ if (isset($_GET['name'])) {
 
     if (isset($_GET['sort']) && ($_GET['sort'] === "asc" || ($_GET['sort'] === "desc"))) {
         $sort_order = strtoupper($_GET['sort']);
-        $sql .= " ORDER BY salary $sort_order"; 
+        $sql .= " ORDER BY salary $sort_order";
     }
 
     $result = $db->conn->query($sql);
 
-    // var_dump($result);
     if ($result->num_rows > 0) {
-        $total_rows= $result->num_rows;
-
+        $total_rows = $result->num_rows;
         $data = $result->fetch_all(MYSQLI_ASSOC);
         http_response_code(200);
         echo json_encode(
