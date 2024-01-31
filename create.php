@@ -65,7 +65,7 @@ try {
             JSON_PRETTY_PRINT
         );
     }
-} catch (\Throwable $err) {
+} catch (\Exception $err) {
     http_response_code(400);
     echo json_encode(
         [
